@@ -28,8 +28,8 @@ class StudyingClassController extends Controller
     }
 
     public function delete(StudyingClass $class) {
-        $class->delete();
-        
+        $class->delete;
+
         return response()->json(null, 204);
     }
 }

@@ -7,6 +7,6 @@ use App\StudyingClass;
 class ClassObserver
 {
     public static function saving(StudyingClass $model) {
-        $model->owner_id = 1;
+        $model->owner_id = auth('api')->user()->id;
     }
 }
