@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $with = ['class'];
 
-    protected $fillable = ['content', 'attachments', 'class_id', 'user_id'];
+    protected $fillable = ['content', 'attachments', 'class_id', 'user_id', 'title'];
 
     protected $casts = [
         'attachments' => 'array'
