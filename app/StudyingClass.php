@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudyingClass extends Model
 {
+    protected $with = ['owner'];
+
     protected $attributes = [
         'image' => 'https://seeklogo.com/images/F/flutter-logo-5086DD11C5-seeklogo.com.png'
     ];

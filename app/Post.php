@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $with = ['class'];
+
     protected $fillable = ['content', 'attachments', 'class_id', 'user_id'];
 
     protected $casts = [

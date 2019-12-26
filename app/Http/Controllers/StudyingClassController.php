@@ -15,6 +15,7 @@ class StudyingClassController extends Controller
     }
 
     public function show(StudyingClass $class) {
+        $class->owner = $class->owner;
         return $class;
     }
 

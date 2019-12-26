@@ -15,7 +15,6 @@ class PostController extends Controller
     }
 
     public function show(StudyingClass $class, Post $post) {
-        $post->user = $post->user;
         return $post;
     }
 
