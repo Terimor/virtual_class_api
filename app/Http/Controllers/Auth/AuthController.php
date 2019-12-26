@@ -43,7 +43,6 @@ class AuthController extends Controller {
         $proxy = Request::create(
             'oauth/token',
             'POST',
-            'user'
         );
 
         $user->save();
@@ -64,7 +63,6 @@ class AuthController extends Controller {
         $proxy = Request::create(
             'oauth/token',
             'POST',
-            'user'
         );
 
         return \Route::dispatch($proxy);
