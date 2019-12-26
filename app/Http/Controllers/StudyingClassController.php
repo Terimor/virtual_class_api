@@ -13,7 +13,7 @@ class StudyingClassController extends Controller
             $subquery->where('user_id', $this->user->id);
         });
         if($amount = $request->get('amount', false)) {
-            $query->offset($amount);
+            $query->limit($amount);
         }
         $query->orderBy('id', 'DESC');
         return $query->get();
