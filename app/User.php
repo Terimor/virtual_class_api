@@ -37,6 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $attributes = [
+        'avatar' => 'https://image.freepik.com/free-photo/_8353-6394.jpg'
+    ];
+
     public function owned_classes() {
         $this->hasMany('App\StudyingClass');
     }

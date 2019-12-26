@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudyingClass extends Model
 {
+    protected $attributes = [
+        'image' => 'https://seeklogo.com/images/F/flutter-logo-5086DD11C5-seeklogo.com.png'
+    ];
+
     protected $fillable = ['name', 'description', 'image', 'owner_id'];
 
     public function owner() {
