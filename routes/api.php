@@ -23,6 +23,10 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
 
+    /**user */
+    Route::get('user', 'UserController@index');
+    /**-user- */
+
     /**classes */
     Route::get('classes', 'StudyingClassController@index');
     Route::get('classes/{class}', 'StudyingClassController@show')->middleware(CheckClassMember::class);
