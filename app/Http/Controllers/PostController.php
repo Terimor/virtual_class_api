@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index(StudyingClass $class) {
         return Post::where('class_id', $class->id)
-            ->with('user')->get();
+            ->with('user')->orderBy('id', 'DESC')->get();
     }
 
     public function show(StudyingClass $class, Post $post) {

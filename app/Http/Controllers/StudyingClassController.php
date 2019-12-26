@@ -8,14 +8,18 @@ use App\Member;
 
 class StudyingClassController extends Controller
 {
-    public function index() {
-        return StudyingClass::whereHas('members', function($query) {
-            $query->where('user_id', $this->user->id);
-        })->get();
+    public function index(Request $request) {
+        $query = StudyingClass::whereHas('members', function($subquery) {
+            $subquery->where('user_id', $this->user->id);
+        });
+        if($amount = $request->get('amount', false)) {
+            $query->offset(5);
+        }
+        $query->orderBy('id', 'DESC');
+        return $query->get();
     }
 
     public function show(StudyingClass $class) {
-        $class->owner = $class->owner;
         return $class;
     }
 
