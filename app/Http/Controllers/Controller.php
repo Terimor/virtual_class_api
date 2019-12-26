@@ -9,5 +9,14 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
+    public $user;
+
+    public function __construct()
+    {
+        if(auth('api')->user()) {
+            $this->user = auth('api')->user();
+        }
+    }
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

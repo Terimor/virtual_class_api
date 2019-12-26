@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller {
@@ -24,7 +25,7 @@ class AuthController extends Controller {
         }
         $data = request()->only('email','name','password');
 
-        $user = \App\User::create([
+        $user = new User([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
@@ -43,6 +44,8 @@ class AuthController extends Controller {
             'oauth/token',
             'POST'
         );
+
+        $user->save();
 
         return \Route::dispatch($proxy);
     }

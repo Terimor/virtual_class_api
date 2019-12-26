@@ -11,4 +11,12 @@ class StudyingClass extends Model
     public function owner() {
         return $this->belongsTo('App\User', 'owner_id', 'id');
     }
+
+    public function posts() {
+        return $this->hasMany('App\Post', 'class_id');
+    }
+
+    public function members() {
+        return $this->hasMany('App\Member', 'class_id');
+    }
 }

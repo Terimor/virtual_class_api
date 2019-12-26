@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function owned_classes() {
         $this->hasMany('App\StudyingClass');
     }
+
+    public function posts() {
+        $this->hasMany('App\Post');
+    }
 }

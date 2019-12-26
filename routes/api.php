@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Middleware\CheckClassMember;
+use App\Http\Middleware\CheckClassOwner;
+
 use Illuminate\Http\Request;
 
 /*
@@ -19,11 +22,29 @@ Route::post('login', 'Auth\AuthController@login');
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
+
+    /**classes */
     Route::get('classes', 'StudyingClassController@index');
-    Route::get('classes/{class}', 'StudyingClassController@show');
+    Route::get('classes/{class}', 'StudyingClassController@show')->middleware(CheckClassMember::class);
     Route::post('classes', 'StudyingClassController@store');
-    Route::put('classes/{class}', 'StudyingClassController@update');
-    Route::delete('classes/{class}', 'StudyingClassController@delete');
+    Route::put('classes/{class}', 'StudyingClassController@update')->middleware(CheckClassOwner::class);
+    Route::delete('classes/{class}', 'StudyingClassController@delete')->middleware(CheckClassOwner::class);
+    /**-classes- */
+
+    /**members */
+    Route::get('classes/{class}/members', 'MembersController@index')->middleware(CheckClassMember::class);
+    Route::post('classes/{class}/members', 'MembersController@store')->middleware(CheckClassOwner::class);
+    Route::delete('classes/{class}/members', 'MembersController@delete')->middleware(CheckClassMember::class);
+    /**-members- */
+
+    /**posts */
+    Route::get('classes/{class}/posts', 'PostController@index')->middleware(CheckClassMember::class);
+    Route::get('classes/{class}/posts/{post}', 'PostController@show')->middleware(CheckClassMember::class);
+    Route::post('classes/{class}/posts', 'PostController@store')->middleware(CheckClassOwner::class);
+    Route::put('classes/{class}/posts/{post}', 'PostController@update')->middleware(CheckClassOwner::class);
+    Route::delete('classes/{class}/posts/{post}', 'PostController@delete')->middleware(CheckClassOwner::class);
+    /**-posts- */
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

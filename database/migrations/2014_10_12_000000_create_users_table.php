@@ -19,17 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('avatar')->nullable();
+            $table->string('bio')->nullable();
             $table->timestamps();
         });
-
-        DB::table('users')->insert(
-            array(
-                'name' => 'Ivanov Ivan',
-                'email' => 'name@domain.com',
-                'password' => 'qweasd'
-            )
-        );
     }
 
     /**
