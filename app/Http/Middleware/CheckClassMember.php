@@ -16,7 +16,8 @@ class CheckClassMember extends PermissionBase
      */
     public function handle($request, Closure $next)
     {
-        if(!Member::count($this->user->id, $request->route('class', 0)->id, 0)) {
+        dd($this->user->id, $request->route('class', 0)->id);
+        if(!Member::count($this->user->id, @$request->route('class', 0)->id)) {
             return response()->json(self::ACCESS_FORBIDDEN, 403);
         }
         return $next($request);
