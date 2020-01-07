@@ -25,6 +25,7 @@ Route::group([
 
     /**user */
     Route::get('user', 'UserController@index');
+    Route::put('user', 'UserController@update');
     /**-user- */
 
     /**classes */
@@ -48,6 +49,19 @@ Route::group([
     Route::put('classes/{class}/posts/{post}', 'PostController@update')->middleware(CheckClassOwner::class);
     Route::delete('classes/{class}/posts/{post}', 'PostController@delete')->middleware(CheckClassOwner::class);
     /**-posts- */
+
+    /**notifications */
+    Route::get('classes/{class}/notifications', 'NotificationsController@index')->middleware(CheckClassMember::class);
+    Route::get('classes/{class}/notifications/{notification}', 'NotificationsController@show')->middleware(CheckClassMember::class);
+    Route::post('classes/{class}/notifications', 'NotificationsController@store')->middleware(CheckClassOwner::class);
+    Route::put('classes/{class}/notifications/{notification}', 'NotificationsController@update')->middleware(CheckClassOwner::class);
+    Route::delete('classes/{class}/notifications/{notification}', 'NotificationController@delete')->middleware(CheckClassOwner::class);
+    /**-notifications= */
+
+    /**views */
+    Route::get('posts/{post}/views', 'ViewsController@index');
+    Route::post('posts/{post}/views', 'ViewsController@store');
+    /**-views- */
 
 });
 
