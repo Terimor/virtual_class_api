@@ -11,7 +11,6 @@ class NotificationsController extends Controller
 {
     public function feed(Request $request) {
         $classes = array_column(Member::where('user_id', $this->user->id)->get('class_id')->toArray(), 'class_id');
-        dd($classes);
         $query = Notification::whereIn('class_id', $classes)->orderBy('id', 'DESC');
         if($amount = $request->get('amount', false)) {
             $query->limit($amount);
