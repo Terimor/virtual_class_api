@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class NotificationsController extends Controller
 {
+    public function feed(Request $request) {
+
+    }
+
     public function index(StudyingClass $class, Request $request) {
         $query = Notification::orderBy('id', 'DESC');
         if($amount = $request->get('amount', false)) {
