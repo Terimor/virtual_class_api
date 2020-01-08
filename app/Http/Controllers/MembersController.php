@@ -24,7 +24,16 @@ class MembersController extends Controller
                 'message' => 'User is not registered'
             ));
         }
-        return Member::findOrCreate($request->get('user_id', 0), $class->id);
+        return Member::findOrCreate($request->get('user_id'), $class->id);
+    }
+
+    public function addMember(Request $request, StudyingClass $class) {
+        if(!($user = User::where('email', $request->get('email'))->first())) {
+            return response()->json(array(
+                'message' => 'User is not registered'
+            ));
+        }
+        return Member::findOrCreate($user->id, $class->id);
     }
 
     public function delete(Request $request, StudyingClass $class) {

@@ -39,6 +39,7 @@ Route::group([
     /**members */
     Route::get('classes/{class}/members', 'MembersController@index')->middleware(CheckClassMember::class);
     Route::post('classes/{class}/members', 'MembersController@store')->middleware(CheckClassOwner::class);
+    Route::post('classes/{class}/add_member', 'MembersController@addMember')->middleware(CheckClassOwner::class);
     Route::delete('classes/{class}/members', 'MembersController@delete')->middleware(CheckClassMember::class);
     /**-members- */
 
