@@ -19,7 +19,7 @@ class NotificationsController extends Controller
     }
 
     public function index(StudyingClass $class, Request $request) {
-        $query = Notification::orderBy('id', 'DESC');
+        $query = Notification::orderBy('id', 'DESC')->where('class_id', $class->id);
         if($amount = $request->get('amount', false)) {
             $query->limit($amount);
         }
