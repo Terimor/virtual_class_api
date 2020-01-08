@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\StudyingClass;
 use App\Post;
 use App\Member;
+use App\Notification;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -20,9 +21,12 @@ class PostController extends Controller
 
     public function store(Request $request, StudyingClass $class) {
         $post = new Post($request->all());
-        $post->class_id = $class->id;
-        $post->user_id = $this->user->id;
+        $notification = new Notification;
+        $notification->class_id = $post->class_id = $class->id;
+        $notification->user_id = $post->user_id = $this->user->id;
+        $notification->content = $post->title;
         $post->save();
+        $notification->save();
         return $post;
     }
 
