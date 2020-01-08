@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\User;
 use App\StudyingClass;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,11 @@ class MembersController extends Controller
     }
 
     public function store(Request $request, StudyingClass $class) {
+        if(!User::where('id', $request->get('user_id'))->count()) {
+            return response()->json(array(
+                'message' => 'User is not registered'
+            ));
+        }
         return Member::findOrCreate($request->get('user_id', 0), $class->id);
     }
 

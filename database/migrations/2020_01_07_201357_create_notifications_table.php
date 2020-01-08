@@ -19,7 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->unsignedBigInteger('class_id')->nullable();
             $table->foreign('class_id')
                     ->references('id')
-                    ->on('posts');
+                    ->on('studying_classes');
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')

@@ -51,11 +51,12 @@ Route::group([
     /**-posts- */
 
     /**notifications */
+    Route::get('notifications', 'NotificationsController@feed');
     Route::get('classes/{class}/notifications', 'NotificationsController@index')->middleware(CheckClassMember::class);
     Route::get('classes/{class}/notifications/{notification}', 'NotificationsController@show')->middleware(CheckClassMember::class);
     Route::post('classes/{class}/notifications', 'NotificationsController@store')->middleware(CheckClassOwner::class);
     Route::put('classes/{class}/notifications/{notification}', 'NotificationsController@update')->middleware(CheckClassOwner::class);
-    Route::delete('classes/{class}/notifications/{notification}', 'NotificationController@delete')->middleware(CheckClassOwner::class);
+    Route::delete('classes/{class}/notifications/{notification}', 'NotificationsController@delete')->middleware(CheckClassOwner::class);
     /**-notifications= */
 
     /**views */
